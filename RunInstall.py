@@ -34,7 +34,7 @@ def check_packages():
             installer = 'apt-get'
 
             for pkg in lamp_pkgs_deb:
-                if os.system(f"dpkg -l {pkg} &> /dev/null"):
+                if os.system(f"dpkg -l {pkg} &> /dev/null") >= 0:
                     to_ins.append(pkg)
 
         return installer, to_ins
