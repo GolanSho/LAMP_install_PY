@@ -53,6 +53,7 @@ yos = input('Start installing? y/n ')
 
 if yos == 'y':
     for app in app_list:
-        os.system("sudo "f'{ins}' " install " f'{app}')
+        os.system("sudo "f'{ins}' " -y install " f'{app}' "&> /dev/null")
+        print(f'{app} Installed')
 else:
     exit(1)
