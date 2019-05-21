@@ -35,7 +35,7 @@ f_pkgVaild(){
     if [ $installer = apt-get ]; then
         for p in $lamp_pkgs_deb; do
             dpkg -l $p &> /dev/null
-            if [ $chkpkg -ge 1 ]; then
+            if [ $? -ge 1 ]; then
                 to_ins=("${to_ins[@]}" "$p")
             fi
         done
