@@ -2,7 +2,7 @@
 
 f_distValid(){
 
-    dist=$(lsb_release -i | awk '{print $3}')
+    dist=$(hostnamectl| grep "Operating"|awk -d":" '{print $3}')
     dist=${dist,,}
     distros1="centos fedora redhat suse"
     distros2="debian ubuntu linuxmint"
@@ -27,7 +27,7 @@ f_distValid(){
 
 f_pkgVaild(){
 
-    lamp_pkgs_deb="apache2 mariadb php"
+    lamp_pkgs_deb="apache2 mariadb-server php7.0"
     lamp_pkgs_rpm="httpd mariadb php"
 
     f_distValid
@@ -53,6 +53,7 @@ f_pkgVaild(){
 f_install(){
 
     read -p "Start Installation? [y/n] " ans
+    sudo apt-get update && sudo apt-get upgrade &> /dev/null
 
     if [ $ans = y ]; then
         for pck in ${to_ins[@]}; do
