@@ -2,7 +2,7 @@
 
 f_distValid(){
 
-    dist=$(hostnamectl| grep "Operating"|awk -d":" '{print $3}')
+    dist=$(sed -n -e '/PRETTY_NAME/ s/^.*=\|"\| .*//gp' /etc/os-release)
     dist=${dist,,}
     distros1="centos fedora redhat suse"
     distros2="debian ubuntu linuxmint"
