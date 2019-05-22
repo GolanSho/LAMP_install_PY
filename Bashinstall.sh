@@ -54,7 +54,7 @@ f_install(){
 
     read -p "Start Installation? [y/n] " ans
     $installer -y install sudo &> /dev/null
-    sudo apt-get update && sudo apt-get upgrade &> /dev/null
+    sudo apt-get update &> /dev/null && sudo apt-get upgrade &> /dev/null
 
     if [ $ans = y ]; then
         for pck in ${to_ins[@]}; do
