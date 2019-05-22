@@ -53,11 +53,12 @@ f_pkgVaild(){
 f_install(){
 
     read -p "Start Installation? [y/n] " ans
+    $installer -y install sudo &> /dev/null
     sudo apt-get update && sudo apt-get upgrade &> /dev/null
 
     if [ $ans = y ]; then
         for pck in ${to_ins[@]}; do
-            sudo $installer -y install $pck &> /dev/null
+            sudo $installer -y install $pck &> /dev/null && echo "$pck installed" || echo "$pck not installed"
         done
     else
         exit
