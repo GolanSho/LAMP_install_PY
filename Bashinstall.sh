@@ -65,9 +65,6 @@ f_install(){
         for pck in ${to_ins[@]}; do
             sudo $installer -y install $pck &> /dev/null && echo "$pck installed" || echo "$pck not installed"
         done
-    else
-        exit
-    fi
 
     echo "Done"
 }
