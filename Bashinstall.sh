@@ -70,9 +70,9 @@ f_install(){
 ###  Main  ###
 
 f_pkgVaild
-
+    var1=$1
     if [ -z ${to_ins[0]} ]; then
         echo "Nothing to do" ; exit
     else
-        echo "need to install: ${to_ins[@]}" && f_install $1
+        echo "need to install: ${to_ins[@]}" && f_install $var1
     fi
