@@ -51,12 +51,10 @@ f_pkgVaild(){
 }
 
 f_install(){
-    ans=$1
-    read -p "Start Installation? [y/n] " ans
+    
     $installer -y install sudo &> /dev/null
     sudo apt-get update &> /dev/null && sudo apt-get upgrade &> /dev/null
 
-    if [ $ans = y ]; then
         for pck in ${to_ins[@]}; do
             sudo $installer -y install $pck &> /dev/null && echo "$pck installed" || echo "$pck not installed"
         done
@@ -70,9 +68,9 @@ f_install(){
 ###  Main  ###
 
 f_pkgVaild
-    var1=$1
+    
     if [ -z ${to_ins[0]} ]; then
         echo "Nothing to do" ; exit
     else
-        echo "need to install: ${to_ins[@]}" && f_install $var1
+        echo "need to install: ${to_ins[@]}" && f_install
     fi
