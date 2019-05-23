@@ -3,6 +3,7 @@
 f_distValid(){
 
     dist=$(sed -n -e '/PRETTY_NAME/ s/^.*=\|"\| .*//gp' /etc/os-release)
+    reddist=$(cat /etc/redhat-release| awk -F" " '{print $1,$2}')
     dist=${dist,,}
     distros1="centos redhat suse"
     distros2="debian ubuntu linuxmint"
@@ -21,6 +22,9 @@ f_distValid(){
     
     if [ $dist = fedora ]; then
         installer="dnf"
+    elif [ $reddist = Red Hat ]; then
+        installer="yum"
+    fi
 
     if [ $? -ge 1 ]; then
         echo "os not supported" ; exit
