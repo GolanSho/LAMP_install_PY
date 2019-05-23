@@ -4,7 +4,7 @@ f_distValid(){
 
     dist=$(sed -n -e '/PRETTY_NAME/ s/^.*=\|"\| .*//gp' /etc/os-release)
     dist=${dist,,}
-    distros1="centos fedora redhat suse"
+    distros1="centos redhat suse"
     distros2="debian ubuntu linuxmint"
 
     for i in $distros1; do
@@ -18,6 +18,9 @@ f_distValid(){
             installer="apt-get"
         fi
     done
+    
+    if [ $dist = fedora ]; then
+        installer="dnf"
 
     if [ $? -ge 1 ]; then
         echo "os not supported" ; exit
