@@ -46,7 +46,7 @@ f_pkgVaild(){
                 to_ins=("${to_ins[@]}" "$p")
             fi
         done
-    elif [ $installer = yum ]; then
+    elif [ $installer = yum ]||[ $installer = dnf ]; then
         for p in $lamp_pkgs_rpm; do
             rpm -qa |grep $p &> /dev/null
             if [ $? -ge 1 ]; then
